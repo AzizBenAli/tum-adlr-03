@@ -1,7 +1,8 @@
-# Ignore the virtual environment directory
+
 .venv/
 .idea
-# Ignore the data folder
+.DS_Store
+src/__pycache__/
 data/
 processed_data_folder/
 
