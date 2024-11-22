@@ -29,7 +29,7 @@ class DeepSDFDecoder(nn.Module):
         self.fc_output = nn.Linear(hidden_dim, 1)
 
         # Activation function
-        self.activation = nn.ReLU()
+        self.activation = nn.LeakyReLU(0.2)
 
     def forward(self, latent_code, points):
         """
@@ -45,7 +45,7 @@ class DeepSDFDecoder(nn.Module):
 
         # Input layer
         x = self.fc_input(x)
-        x = self.bn_input(x)
+        #x = self.bn_input(x)
         x = self.activation(x)
 
         # Pass through hidden layers
@@ -62,7 +62,7 @@ class DeepSDFDecoder(nn.Module):
 
 
 class DeepSDFModel(nn.Module):
-    def __init__(self, latent_dim=256, hidden_dim=512, num_layers=8, num_embeddings=69, use_skip_connections=True):
+    def __init__(self, latent_dim=256, hidden_dim=512, num_layers=8, num_embeddings=100, use_skip_connections=True):
         super(DeepSDFModel, self).__init__()
         self.latent_dim = latent_dim
         self.decoder = DeepSDFDecoder(latent_dim, hidden_dim, num_layers, use_skip_connections)

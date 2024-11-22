@@ -69,9 +69,9 @@ class MeshProcessor:
                     location = "inside" if sdf[i, j] < 0 else "outside"
                     border_points.append([i, j, sdf[i, j], location])
 
-        num_border_points = 800
+        num_border_points = 8000
         border_points_sampled = random.sample(border_points, min(len(border_points), num_border_points))
-        num_random_points = 200
+        num_random_points = 2000
         filtered_points = [(i, j) for i in range(sdf.shape[0]) for j in range(sdf.shape[1]) if
                            abs(sdf[i, j]) < 3]
         random_points = random.sample(filtered_points, min(len(filtered_points), num_random_points))
@@ -111,7 +111,7 @@ class MeshProcessor:
                         print(f"Processing {obj_file_path}")
                         self.process_mesh(obj_file_path, shape_count)
                         shape_count += 1
-                    if shape_count ==201:
+                    if shape_count ==10:
                         break
 
 

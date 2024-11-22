@@ -41,11 +41,11 @@ class DeepSDFDecoder(nn.Module):
         """
         # Concatenate latent code and points
         x = torch.cat([latent_code, points], dim=1)  # Shape: (batch_size, latent_dim + 3)
-        x = F.relu(self.fc_input(x))
+        x = F.leaky_relu(self.fc_input(x),0.2)
 
         # Pass through hidden layers
         for layer in self.hidden_layers:
-            x = F.relu(layer(x))
+            x = F.leaky_relu(layer(x),0.2)
 
         # Output SDF value
         sdf = self.fc_output(x)
@@ -53,7 +53,7 @@ class DeepSDFDecoder(nn.Module):
 
 
 class DeepSDFModel(nn.Module):
-    def __init__(self, latent_dim=256, hidden_dim=512, num_layers=8, num_embeddings=100):
+    def __init__(self, latent_dim=256, hidden_dim=64, num_layers=8, num_embeddings=100):
         super(DeepSDFModel, self).__init__()
         self.latent_dim = latent_dim
         self.decoder = DeepSDFDecoder(latent_dim, hidden_dim, num_layers)
