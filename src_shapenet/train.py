@@ -105,7 +105,7 @@ if __name__ == "__main__":
 
     trained_model = train_model(
         model, train_loader, val_loader, criterion, optimizer, scheduler,
-        num_epochs=100, device=device, latent_reg_weight=latent_reg_weight
+        num_epochs=80, device=device, latent_reg_weight=latent_reg_weight
     )
 
     os.makedirs('../trained_models', exist_ok=True)
@@ -114,7 +114,6 @@ if __name__ == "__main__":
     np.save('../trained_models/latent_codes.npy', latent_codes.cpu().numpy())
 
     visualize_predictions(trained_model, val_dataset, shape_idx=0, device=device)
-    visualize_latent_codes(model, val_loader, device=device)
 
     print("Model and latent codes saved.")
 

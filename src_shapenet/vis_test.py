@@ -66,7 +66,7 @@ def visualize_shape(model, shape_idx, grid_size=224, grid_range=(-10, 10), devic
 latent_dim = 64
 hidden_dim = 512
 num_layers = 16
-num_embeddings = 6  # Adjust based on your number of shapes
+num_embeddings = 69  # Adjust based on your number of shapes
 device = "cpu"
 
 # Create the model instance
@@ -84,7 +84,7 @@ trained_model.to(device)
 trained_model.eval()
 
 # Visualize the shapes
-for shape_idx in range(num_embeddings):  # Assuming you have at least 6 shapes
+for shape_idx in range(20):  # Assuming you have at least 6 shapes
     visualize_shape(trained_model, shape_idx, grid_size=500, grid_range=(-448, 448), device=device)
 
 
