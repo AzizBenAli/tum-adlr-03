@@ -241,7 +241,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='latent_interpolation_sequence.gif'  # Change or set to None if you don't want to save
+        save_path='../plots/latent_interpolation_sequence.gif'  # Change or set to None if you don't want to save
     )
     print("Animation created and saved as 'latent_interpolation_sequence.gif'.")
 
@@ -315,7 +315,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='latent_interpolation_linear.gif'  # Change or set to None if you don't want to save
+        save_path='../plots/latent_interpolation_linear.gif'  # Change or set to None if you don't want to save
     )
     print("Linear interpolation animation created and saved as 'latent_interpolation_linear.gif'.")
 
@@ -332,7 +332,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='latent_interpolation_slerp.gif'  # Change or set to None if you don't want to save
+        save_path='../plots/latent_interpolation_slerp.gif'  # Change or set to None if you don't want to save
     )
     print("Spherical linear interpolation animation created and saved as 'latent_interpolation_slerp.gif'.")
 
