@@ -1,8 +1,8 @@
-
 .venv/
 .idea
 .DS_Store
-src/__pycache__/
 data/
-processed_data_folder/
+trained_models/
+ShapeNet_data/
+
 
