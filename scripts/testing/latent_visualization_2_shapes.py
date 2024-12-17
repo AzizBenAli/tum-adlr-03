@@ -3,10 +3,10 @@ from helper import *
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    latent_dim = 128
+    latent_dim = 64
     hidden_dim = 512
     num_layers = 32
-    num_embeddings = 207
+    num_embeddings = 314
     grid_size = 500
     grid_range = (-448, 448)
 
@@ -17,7 +17,7 @@ if __name__ == "__main__":
         num_layers=num_layers,
         num_embeddings=num_embeddings
     )
-    state_dict = torch.load('../../multi_class/trained_models_multiclass/deepsdf_model.pth', map_location=torch.device(device))
+    state_dict = torch.load('../../multi_class/trained_models/deepsdf_model.pth', map_location=torch.device(device))
     trained_model.load_state_dict(state_dict)
     trained_model.to(device)
     trained_model.eval()

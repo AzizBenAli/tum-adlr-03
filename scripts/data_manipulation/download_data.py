@@ -5,7 +5,6 @@ import json
 import tempfile
 from dotenv import load_dotenv
 
-
 def load_class_mapping():
     json_path = "shapenet_classes.json"
     if not os.path.exists(json_path):

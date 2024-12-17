@@ -4,6 +4,14 @@ from scripts.data_manipulation.data_loader import DeepSDFDataset2D
 from torch.utils.data import DataLoader
 from scripts.models.decoder import DeepSDFModel
 
+torch.manual_seed(42)
+if torch.cuda.is_available():
+    torch.cuda.manual_seed(42)
+    torch.cuda.manual_seed_all(42)
+
+torch.backends.cudnn.deterministic = True
+torch.backends.cudnn.benchmark = False
+
 def infer_and_visualize_shape(model, test_dataset, test_data_loader, shape_idx, plots_dir, grid_size=224, grid_range=(-10, 10), device='cpu', num_iterations=500, lr=1e-2):
     model.eval()
     for batch in test_data_loader:
