@@ -35,8 +35,9 @@ multi_class:
   shapes:
     - "airplanes"
     - "cars"
+    - "train"
 
-  max_objects_per_type: 50
+  max_objects_per_type: 150
 
   latent_dim: 64
   hidden_dim: 512

@@ -1,8 +1,8 @@
 import torch
 from helper import visualize_shape_with_latent
-from sripts.data_transformation.data_loader import DeepSDFDataset2D
+from scripts.data_manipulation.data_loader import DeepSDFDataset2D
 from torch.utils.data import DataLoader
-from sripts.models.decoder import DeepSDFModel
+from scripts.models.decoder import DeepSDFModel
 
 def infer_and_visualize_shape(model, test_dataset, test_data_loader, shape_idx, plots_dir, grid_size=224, grid_range=(-10, 10), device='cpu', num_iterations=500, lr=1e-2):
     model.eval()
@@ -37,10 +37,10 @@ def infer_and_visualize_shape(model, test_dataset, test_data_loader, shape_idx, 
 
 
 if __name__ == "__main__":
-    latent_dim = 64
+    latent_dim = 128
     hidden_dim = 512
-    num_layers = 16
-    num_embeddings = 70
+    num_layers = 32
+    num_embeddings = 207
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     trained_model = DeepSDFModel(
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         num_layers=num_layers,
         num_embeddings=num_embeddings
     )
-    state_dict = torch.load('../../multi_class/trained_models/deepsdf_model.pth', map_location=torch.device(device))
+    state_dict = torch.load('../../multi_class/trained_models_multiclass/deepsdf_model.pth', map_location=torch.device(device))
     trained_model.load_state_dict(state_dict)
     trained_model.to(device)
     trained_model.eval()
@@ -57,13 +57,10 @@ if __name__ == "__main__":
     test_dataset = DeepSDFDataset2D('../../multi_class/data', split='test')
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
 
-    train_dataset = DeepSDFDataset2D('../../multi_class/data', split='train')
-    train_loader = DataLoader(train_dataset, batch_size=32, shuffle=False)
-
     plots_dir = "../../single_class/plots"
-    for i in range(0,10):
-        infer_and_visualize_shape(trained_model, train_dataset, train_loader, i, plots_dir, grid_size=500, grid_range=(-448, 448), device=device,
-                                  num_iterations=6000, lr=1e-1
+    for i in range(10):
+        infer_and_visualize_shape(trained_model, test_dataset, test_loader, i, plots_dir, grid_size=500, grid_range=(-448, 448), device=device,
+                                  num_iterations=5000, lr=1e-1
                                   )
 
 
