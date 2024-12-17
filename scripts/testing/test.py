@@ -36,32 +36,6 @@ def infer_and_visualize_shape(model, test_dataset, test_data_loader, shape_idx, 
     visualize_shape_with_latent(model, test_dataset, latent_code, batch['shape_count'], plots_dir, grid_size, grid_range, device)
 
 
-if __name__ == "__main__":
-    latent_dim = 128
-    hidden_dim = 512
-    num_layers = 32
-    num_embeddings = 207
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-
-    trained_model = DeepSDFModel(
-        latent_dim=latent_dim,
-        hidden_dim=hidden_dim,
-        num_layers=num_layers,
-        num_embeddings=num_embeddings
-    )
-    state_dict = torch.load('../../multi_class/trained_models_multiclass/deepsdf_model.pth', map_location=torch.device(device))
-    trained_model.load_state_dict(state_dict)
-    trained_model.to(device)
-    trained_model.eval()
-
-    test_dataset = DeepSDFDataset2D('../../multi_class/data', split='test')
-    test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False)
-
-    plots_dir = "../../single_class/plots"
-    for i in range(10):
-        infer_and_visualize_shape(trained_model, test_dataset, test_loader, i, plots_dir, grid_size=500, grid_range=(-448, 448), device=device,
-                                  num_iterations=5000, lr=1e-1
-                                  )
 
 
 
