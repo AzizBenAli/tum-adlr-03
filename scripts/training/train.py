@@ -3,8 +3,8 @@ import os
 import torch.nn as nn
 import numpy as np
 from torch.utils.data import DataLoader
-from sripts.data_transformation.data_loader import DeepSDFDataset2D
-from sripts.models.decoder import DeepSDFModel
+from scripts.data_transformation.data_loader import DeepSDFDataset2D
+from scripts.models.decoder import DeepSDFModel
 
 def train_model(model, train_loader, criterion, optimizer, scheduler, num_epochs=50, latent_reg_weight=1):
     for epoch in range(num_epochs):

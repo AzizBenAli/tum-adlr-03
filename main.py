@@ -1,8 +1,8 @@
-from sripts.data_transformation.data_preprocessing import MeshProcessor
-from sripts.data_transformation.data_loader import DeepSDFDataset2D
-from sripts.models.decoder import DeepSDFModel
-from sripts.training.train import train_model
-from sripts.testing.test import infer_and_visualize_shape
+from scripts.data_transformation.data_preprocessing import MeshProcessor
+from scripts.data_transformation.data_loader import DeepSDFDataset2D
+from scripts.models.decoder import DeepSDFModel
+from scripts.training.train import train_model
+from scripts.testing.test import infer_and_visualize_shape
 from torch.utils.data import DataLoader
 from helper import *
 

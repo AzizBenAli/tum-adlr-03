@@ -2,10 +2,10 @@ import numpy as np
 import torch
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-from sripts.models.decoder import DeepSDFModel
+from scripts.models.decoder import DeepSDFModel
 from sklearn.manifold import TSNE
 from torch.utils.data import DataLoader
-from sripts.data_transformation.data_loader import DeepSDFDataset2D
+from scripts.data_transformation.data_loader import DeepSDFDataset2D
 
 def interpolate_latent_codes(z1, z2, num_steps=10):
     interpolated_latents = []
@@ -164,7 +164,7 @@ def search_train_dataset(shape_idx):
 exit()"""
 
 if __name__ == "__main__":
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    device = "mps" if torch.cuda.is_available() else "cpu"
     latent_dim = 64
     hidden_dim = 512
     num_layers = 16
@@ -191,7 +191,7 @@ if __name__ == "__main__":
 
     shape_idx_1 = 1
     print(f"Shape index {shape_idx_1} corresponds to shape {search_train_dataset(shape_idx_1)}")
-    shape_idx_2 = 65
+    shape_idx_2 = 23
     print(f"Shape index {shape_idx_2} corresponds to shape {search_train_dataset(shape_idx_2)}")
     print(f"Selecting latent codes for shapes {shape_idx_1} and {shape_idx_2}.")
 
@@ -210,7 +210,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='../plots/latent_interpolation_linear.gif'
+        save_path='../../multi_class/plots/latent_interpolation_linear.gif'
     )
     print("Linear interpolation animation created and saved as 'latent_interpolation_linear.gif'.")
 
@@ -225,7 +225,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='../plots/latent_interpolation_slerp.gif'
+        save_path='../../multi_class/plots/latent_interpolation_slerp.gif'
     )
     print("Spherical linear interpolation animation created and saved as 'latent_interpolation_slerp.gif'.")
 

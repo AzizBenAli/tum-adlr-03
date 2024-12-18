@@ -1,8 +1,8 @@
 import torch
 from helper import visualize_shape_with_latent
-from sripts.data_transformation.data_loader import DeepSDFDataset2D
+from scripts.data_transformation.data_loader import DeepSDFDataset2D
 from torch.utils.data import DataLoader
-from sripts.models.decoder import DeepSDFModel
+from scripts.models.decoder import DeepSDFModel
 
 def infer_and_visualize_shape(model, test_dataset, test_data_loader, shape_idx, plots_dir, grid_size=224, grid_range=(-10, 10), device='cpu', num_iterations=500, lr=1e-2):
     model.eval()
