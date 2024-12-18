@@ -1,3 +1,4 @@
+import argparse
 from scripts.data_manipulation.data_preprocessing import MeshProcessor
 from scripts.models.decoder import DeepSDFModel
 from scripts.training.train import train_model
@@ -5,9 +6,19 @@ from scripts.testing.test import infer_and_visualize_shape
 from helper import *
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="DeepSDF Training and Testing Pipeline")
+    parser.add_argument(
+        "--mode",
+        type=str,
+        required=True,
+        choices=["multi_class", "single_class"],
+        help="Specify the mode for training (e.g., 'multi_class' or 'single_class')."
+    )
+    args = parser.parse_args()
+
     config_settings = load_config("configs/settings.yaml")
     config_hyperparameters= load_config("configs/hyperparameters.yaml")
-    mode = "single_class"
+    mode = args.mode
     mode_config_settings = config_settings[mode]
     mode_config_hyperparameters = config_hyperparameters[mode]
 
