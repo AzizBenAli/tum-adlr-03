@@ -1,0 +1,21 @@
+single_class:
+  latent_dim: 64
+  hidden_dim: 512
+  num_layers: 16
+  batch_size_train: 512
+  batch_size_val: 32
+  lr_decoder: 0.0001
+  lr_latent: 0.001
+  latent_reg_weight: 0.0001
+  num_epochs: 150
+
+multi_class:
+  latent_dim: 64
+  hidden_dim: 512
+  num_layers: 32
+  batch_size_train: 512
+  batch_size_val: 32
+  lr_decoder: 0.001
+  lr_latent: 0.001
+  latent_reg_weight: 0.0001
+  num_epochs: 170

@@ -1,44 +1,44 @@
 from scripts.data_manipulation.data_preprocessing import MeshProcessor
-from scripts.data_manipulation.data_loader import DeepSDFDataset2D
 from scripts.models.decoder import DeepSDFModel
 from scripts.training.train import train_model
 from scripts.testing.test import infer_and_visualize_shape
-from torch.utils.data import DataLoader
 from helper import *
 
 if __name__ == "__main__":
-    config = load_config("configs/config.yaml")
-    mode = "multi_class"
-    mode_config = config[mode]
+    config_settings = load_config("configs/settings.yaml")
+    config_hyperparameters= load_config("configs/hyperparameters.yaml")
+    mode = "single_class"
+    mode_config_settings = config_settings[mode]
+    mode_config_hyperparameters = config_hyperparameters[mode]
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     os.makedirs(mode, exist_ok=True)
 
-    parent_directory = mode_config["parent_directory"]
-    output_base_dir = mode_config["output_base_dir"]
-    data_folder = mode_config["data_folder"]
-    trained_models_dir = mode_config["trained_models_dir"]
-    plots_dir = mode_config["plots_dir"]
+    parent_directory = mode_config_settings["parent_directory"]
+    output_base_dir = mode_config_settings["output_base_dir"]
+    data_folder = mode_config_settings["data_folder"]
+    trained_models_dir = mode_config_settings["trained_models_dir"]
+    plots_dir = mode_config_settings["plots_dir"]
     os.makedirs(output_base_dir, exist_ok=True)
 
-    shapes = mode_config["shapes"]
-    max_objects_per_type = mode_config["max_objects_per_type"]
+    shapes = mode_config_settings["shapes"]
+    max_objects_per_type = mode_config_settings["max_objects_per_type"]
 
-    latent_dim = mode_config["latent_dim"]
-    hidden_dim = mode_config["hidden_dim"]
-    num_layers = mode_config["num_layers"]
-    batch_size_train = mode_config["batch_size_train"]
-    batch_size_val = mode_config["batch_size_val"]
-    lr_decoder = mode_config["lr_decoder"]
-    lr_latent = mode_config["lr_latent"]
-    latent_reg_weight = mode_config["latent_reg_weight"]
-    num_epochs = mode_config["num_epochs"]
+    latent_dim = mode_config_hyperparameters["latent_dim"]
+    hidden_dim = mode_config_hyperparameters["hidden_dim"]
+    num_layers = mode_config_hyperparameters["num_layers"]
+    batch_size_train = mode_config_hyperparameters["batch_size_train"]
+    batch_size_val = mode_config_hyperparameters["batch_size_val"]
+    lr_decoder = mode_config_hyperparameters["lr_decoder"]
+    lr_latent = mode_config_hyperparameters["lr_latent"]
+    latent_reg_weight = mode_config_hyperparameters["latent_reg_weight"]
+    num_epochs = mode_config_hyperparameters["num_epochs"]
 
-    grid_size = mode_config["grid_size"]
-    grid_range = tuple(mode_config["grid_range"])
-    num_iterations = mode_config["num_iterations"]
-    lr_visualization = mode_config["lr_visualization"]
+    grid_size = mode_config_settings["grid_size"]
+    grid_range = tuple(mode_config_settings["grid_range"])
+    num_iterations = mode_config_settings["num_iterations"]
+    lr_visualization = mode_config_settings["lr_visualization"]
 
     processor = MeshProcessor(parent_directory, output_base_dir, max_objects_per_type)
     for shape in shapes:
