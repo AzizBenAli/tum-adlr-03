@@ -1,14 +1,13 @@
 FROM python:3.11-slim
 
-WORKDIR /tum-adlr-03
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    libgl1-mesa-glx \
-    libglib2.0-0 \
-    && apt-get clean \
+COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
-CMD ["python", "main.py"]
+ENTRYPOINT ["python", "main.py"]
+CMD ["--mode", "multi_class"]
+
