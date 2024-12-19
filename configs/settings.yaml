@@ -30,6 +30,6 @@ multi_class:
   shapes:
     - "airplanes"
     - "cars"
-    - "train"
+    - "trains"
 
   max_objects_per_type: 150

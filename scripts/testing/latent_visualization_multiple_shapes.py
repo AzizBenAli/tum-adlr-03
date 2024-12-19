@@ -17,7 +17,7 @@ if __name__ == "__main__":
         num_layers=num_layers,
         num_embeddings=num_embeddings
     )
-    state_dict = torch.load('../../multiclass/trained_models/trained_decoder/deepsdf_model.pth', map_location=torch.device(device))
+    state_dict = torch.load('../../multiclass/trained_models/deepsdf_model.pth', map_location=torch.device(device))
     trained_model.load_state_dict(state_dict)
     trained_model.to(device)
     trained_model.eval()
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='../plots/latent_interpolation_sequence.gif'
+        save_path='../../multi_class/plots/latent_interpolation_linear.gif'
     )
     print("Animation created and saved as 'latent_interpolation_sequence.gif'.")
 

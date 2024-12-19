@@ -37,7 +37,6 @@ def train_model(model, train_loader, criterion, optimizer, scheduler, num_epochs
         print(f"Epoch [{epoch + 1}/{num_epochs}]")
         print(f"Train SDF Loss: {avg_sdf_loss:.6f}, Train Latent Loss: {avg_latent_loss:.6f}")
 
-
     return model
 
 
