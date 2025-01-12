@@ -59,7 +59,7 @@ if __name__ == "__main__":
     train_loader = DataLoader(train_dataset, batch_size=batch_size_train, shuffle=True)
     test_dataset = DeepSDFDataset2D(data_folder, split='test')
     test_loader = DataLoader(test_dataset, batch_size=batch_size_val, shuffle=False)
-
+    exit()
     num_embeddings = len(set(train_dataset.shape_indices.tolist()))
     model = DeepSDFModel(latent_dim, hidden_dim, num_layers, num_embeddings)
     criterion = torch.nn.MSELoss()
