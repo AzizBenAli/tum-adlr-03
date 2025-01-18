@@ -237,5 +237,5 @@ def visualize_shape_with_latent_shape_completion(
         axes[1].set_aspect('equal')
 
         plt.tight_layout()
-        #plt.savefig(f"{plots_dir}/reconstructed_image_{shape_count}_shape_completion.png")
+        plt.savefig(f"{plots_dir}/reconstructed_image_{shape_count}_shape_completion.png")
         plt.show()
