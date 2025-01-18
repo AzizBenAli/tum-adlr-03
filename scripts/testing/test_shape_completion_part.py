@@ -33,7 +33,7 @@ def infer_and_visualize_shape(
 
     for batch in test_data_loader:
         batch_shape_idx = batch["shape_idx"]
-        """if batch["shape_count"][0].item() == 17:
+        """if batch["shape_count"][0].item() == 114:
             print(batch["shape_idx"])"""
 
         if batch_shape_idx[0].item() == shape_idx:
@@ -44,10 +44,14 @@ def infer_and_visualize_shape(
     full_points = torch.cat(full_points, dim=0)
     full_sdf = torch.cat(full_sdf, dim=0)
 
+    #modificatiion 18.01
+    x_coords = full_points[:, 0]
     y_coords = full_points[:, 1]
+    x_middle = (x_coords.min() + x_coords.max()) / 2
     y_middle = (y_coords.min() + y_coords.max()) / 2
 
-    intersection_mask =  (y_coords < y_middle)
+    intersection_mask =  (y_coords < y_middle) & (x_coords < x_middle)
+
     partial_points = full_points[intersection_mask]
     partial_sdf = full_sdf[intersection_mask]
 
@@ -126,10 +130,10 @@ if __name__ == "__main__":
         test_loader,
         shape_idx=2,
         plots_dir=plots_dir,
-        grid_size=10,
+        grid_size=500,
         grid_range=(-448, 448),
         device=device,
-        num_iterations=1,
+        num_iterations=3000,
         lr=1e-1,
     )
 
