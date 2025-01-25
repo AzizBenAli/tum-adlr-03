@@ -5,19 +5,24 @@ import json
 import tempfile
 from dotenv import load_dotenv
 
+
 def load_class_mapping():
     json_path = "shapenet_classes.json"
     if not os.path.exists(json_path):
         raise FileNotFoundError(f"Class mapping file '{json_path}' not found.")
 
-    with open(json_path, 'r') as file:
+    with open(json_path, "r") as file:
         return json.load(file)
 
 
-def download_and_extract_directly(class_name, class_mapping, huggingface_token, output_dir="../../ShapeNet_data"):
+def download_and_extract_directly(
+    class_name, class_mapping, huggingface_token, output_dir="../../ShapeNet_data"
+):
     class_code = class_mapping.get(class_name.lower())
     if not class_code:
-        raise ValueError(f"Class '{class_name}' not found! Available classes: {list(class_mapping.keys())}")
+        raise ValueError(
+            f"Class '{class_name}' not found! Available classes: {list(class_mapping.keys())}"
+        )
 
     print(f"Found class code '{class_code}' for class name '{class_name}'.")
 
@@ -33,8 +38,9 @@ def download_and_extract_directly(class_name, class_mapping, huggingface_token, 
             "--header",
             f"Authorization: Bearer {huggingface_token}",
             "-q",
-            "-O", temp_zip.name,
-            url
+            "-O",
+            temp_zip.name,
+            url,
         ]
         subprocess.run(wget_command, check=True)
         print(f"Downloaded zip file to temporary location: {temp_zip.name}")
@@ -59,12 +65,14 @@ if __name__ == "__main__":
     if not huggingface_token:
         raise ValueError("HUGGINGFACE_TOKEN not found in .env file!")
 
-    parser = argparse.ArgumentParser(description="Download and organize ShapeNet class data.")
+    parser = argparse.ArgumentParser(
+        description="Download and organize ShapeNet class data."
+    )
     parser.add_argument(
         "class_names",
         type=str,
         nargs="+",
-        help="Human-readable names of the classes to download (e.g., 'car airplane')."
+        help="Human-readable names of the classes to download (e.g., 'car airplane').",
     )
 
     args = parser.parse_args()

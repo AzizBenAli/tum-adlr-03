@@ -6,14 +6,25 @@ import random
 import os
 import numpy as np
 from PIL import Image
-from helper import plot_border_points_on_mask
+import logging
+from scripts.utils.image_utils import plot_border_points_on_mask
 
-os.environ['PYOPENGL_PLATFORM'] = 'egl'
+logging.basicConfig(level=logging.ERROR)
+os.environ["PYOPENGL_PLATFORM"] = "egl"
 
 shape_tracker = 1
 
+
 class MeshProcessor:
-    def __init__(self, parent_directory, output_directory, max_objects=100, resolution=(224, 224), rotation_angle=20, border_threshold=10.0):
+    def __init__(
+        self,
+        parent_directory,
+        output_directory,
+        max_objects=100,
+        resolution=(224, 224),
+        rotation_angle=20,
+        border_threshold=10.0,
+    ):
         self.parent_directory = parent_directory
         self.output_directory = output_directory
         self.max_objects = max_objects
@@ -34,15 +45,21 @@ class MeshProcessor:
             camera_transform = camera.look_at(points)
 
             zoom_factor = -6
-            zoom_matrix = trimesh.transformations.translation_matrix([0, 0, zoom_factor])
+            zoom_matrix = trimesh.transformations.translation_matrix(
+                [0, 0, zoom_factor]
+            )
             camera_transform = np.dot(camera_transform, zoom_matrix)
 
             side_camera_position = np.array([3.0, 0.0, 0.0])
-            translation_matrix = trimesh.transformations.translation_matrix(side_camera_position)
+            translation_matrix = trimesh.transformations.translation_matrix(
+                side_camera_position
+            )
             camera_transform = np.dot(camera_transform, translation_matrix)
 
             angle = 150
-            rotation_matrix = trimesh.transformations.rotation_matrix(np.radians(angle), [0, 1, 0])  # Y-axis rotation
+            rotation_matrix = trimesh.transformations.rotation_matrix(
+                np.radians(angle), [0, 1, 0]
+            )  # Y-axis rotation
             camera_transform = np.dot(camera_transform, rotation_matrix)
 
             scene.camera_transform = camera_transform
@@ -58,23 +75,42 @@ class MeshProcessor:
             sdf = dist_outside - dist_inside
 
             border_points = [
-                [i, j, sdf[i, j], "inside" if sdf[i, j] < 0 else "outside", shape_tracker]
+                [
+                    i,
+                    j,
+                    sdf[i, j],
+                    "inside" if sdf[i, j] < 0 else "outside",
+                    shape_tracker,
+                ]
                 for i in range(sdf.shape[0])
                 for j in range(sdf.shape[1])
                 if abs(sdf[i, j]) < self.border_threshold
             ]
 
             num_border_points = 2000
-            border_points_sampled = random.sample(border_points, min(len(border_points), num_border_points))
+            border_points_sampled = random.sample(
+                border_points, min(len(border_points), num_border_points)
+            )
 
             num_random_points = 1000
             filtered_points = [
-                (i, j) for i in range(sdf.shape[0]) for j in range(sdf.shape[1]) if abs(sdf[i, j]) < 3
+                (i, j)
+                for i in range(sdf.shape[0])
+                for j in range(sdf.shape[1])
+                if abs(sdf[i, j]) < 3
             ]
-            random_points = random.sample(filtered_points, min(len(filtered_points), num_random_points))
+            random_points = random.sample(
+                filtered_points, min(len(filtered_points), num_random_points)
+            )
 
             final_points = border_points_sampled + [
-                [i, j, sdf[i, j], "inside" if sdf[i, j] < 0 else "outside", shape_tracker]
+                [
+                    i,
+                    j,
+                    sdf[i, j],
+                    "inside" if sdf[i, j] < 0 else "outside",
+                    shape_tracker,
+                ]
                 for i, j in random_points
             ]
 
@@ -91,9 +127,14 @@ class MeshProcessor:
             image_filename = os.path.join(image_dir, f"shape{shape_tracker}.png")
             image.save(image_filename)
 
-            plot_border_points_on_mask(border_points_sampled, image_array, self.output_directory, f"shape{shape_tracker}")
-        except:
-            pass
+            plot_border_points_on_mask(
+                border_points_sampled,
+                image_array,
+                self.output_directory,
+                f"shape{shape_tracker}",
+            )
+        except Exception as e:
+            logging.error(f"An error occurred while processing the mesh: {e}")
 
     def process_folder(self, shape_name):
         global shape_tracker
@@ -106,7 +147,9 @@ class MeshProcessor:
                 for file_name in os.listdir(models_folder):
                     if file_name.endswith(".obj"):
                         if processed_count >= self.max_objects:
-                            print(f"Reached max_objects ({self.max_objects}) for {shape_name}.")
+                            print(
+                                f"Reached max_objects ({self.max_objects}) for {shape_name}."
+                            )
                             return
 
                         obj_file_path = os.path.join(models_folder, file_name)
@@ -114,5 +157,3 @@ class MeshProcessor:
                         self.process_mesh(obj_file_path, shape_tracker)
                         shape_tracker += 1
                         processed_count += 1
-
-
