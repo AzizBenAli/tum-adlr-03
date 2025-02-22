@@ -1,3 +1,4 @@
+## Representing shapes as Latent Codes
 > This project was conducted as part of the Advanced Deep Learning course at the Technical University of Munich. 
 <img width="797" alt="Screenshot 2025-02-22 at 21 15 53" src="https://github.com/user-attachments/assets/53993287-57fd-451c-ae42-fcf2aef88c67" />
 
@@ -51,15 +52,10 @@ python main.py --mode single_class # Single-class training
 
 🖼️ Visual Results
 
-## <a name="cite"></a>:clipboard: Citation
 
-```
-@article{park2019deepsdf,
-  author      = {J. J. Park and P. Florence and J. Straub and R. Newcombe and S. Lovegrove},
-  title       = {DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation},
-  journal     = {arXiv preprint arXiv:1901.05103},
-  year        = {2019}
-}
-```
+https://github.com/user-attachments/assets/a42e0828-a6d7-4afb-a5dd-44fcd0b64022
+
+https://github.com/user-attachments/assets/4b5c20b3-e607-49a9-8812-ead2f0425139
+
 
 
