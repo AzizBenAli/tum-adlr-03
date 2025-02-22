@@ -50,11 +50,6 @@ python main.py --mode multi_class  # Multi-class training
 python main.py --mode single_class # Single-class training
 ```
 
-🖼️ Visual Results
-
-
-https://github.com/user-attachments/assets/8b8334a7-9aab-4977-8922-d7394048c782
-
 
 
 
