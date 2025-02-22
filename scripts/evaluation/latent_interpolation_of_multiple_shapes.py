@@ -1,5 +1,11 @@
 from scripts.models.decoder import DeepSDFModel
-from helper import *
+import torch
+from scripts.helpers.visualization_helpers import visualize_latent_space
+from scripts.helpers.latent_helpers import (
+    search_train_dataset,
+    interpolate_latent_codes,
+)
+from scripts.utils.image_utils import create_interpolation_animation
 
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -15,9 +21,12 @@ if __name__ == "__main__":
         latent_dim=latent_dim,
         hidden_dim=hidden_dim,
         num_layers=num_layers,
-        num_embeddings=num_embeddings
+        num_embeddings=num_embeddings,
     )
-    state_dict = torch.load('../../multiclass/trained_models/deepsdf_model.pth', map_location=torch.device(device))
+    state_dict = torch.load(
+        "../../multiclass/trained_models/deepsdf_model.pth",
+        map_location=torch.device(device),
+    )
     trained_model.load_state_dict(state_dict)
     trained_model.to(device)
     trained_model.eval()
@@ -40,11 +49,11 @@ if __name__ == "__main__":
     total_interpolated_latents = []
 
     for i in range(len(latent_codes) - 1):
-        print(f"Interpolating between shape {shape_indices[i]} and shape {shape_indices[i+1]}...")
+        print(
+            f"Interpolating between shape {shape_indices[i]} and shape {shape_indices[i+1]}..."
+        )
         interpolated_latents = interpolate_latent_codes(
-            latent_codes[i],
-            latent_codes[i+1],
-            num_steps=num_steps_per_pair
+            latent_codes[i], latent_codes[i + 1], num_steps=num_steps_per_pair
         )
 
         if i < len(latent_codes) - 2:
@@ -62,9 +71,6 @@ if __name__ == "__main__":
         grid_size=grid_size,
         grid_range=grid_range,
         device=device,
-        save_path='../../multi_class/plots/latent_interpolation_linear.gif'
+        save_path="../../multi_class/visualization/latent_interpolation_linear.gif",
     )
     print("Animation created and saved as 'latent_interpolation_sequence.gif'.")
-
-
-

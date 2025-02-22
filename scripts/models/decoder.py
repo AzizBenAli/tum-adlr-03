@@ -1,8 +1,11 @@
 import torch
 import torch.nn as nn
 
+
 class DeepSDFDecoder(nn.Module):
-    def __init__(self, latent_dim=256, hidden_dim=512, num_layers=8, use_skip_connections=True):
+    def __init__(
+        self, latent_dim=256, hidden_dim=512, num_layers=8, use_skip_connections=True
+    ):
         super(DeepSDFDecoder, self).__init__()
         self.latent_dim = latent_dim
         self.hidden_dim = hidden_dim
@@ -16,7 +19,9 @@ class DeepSDFDecoder(nn.Module):
         self.bn_layers = nn.ModuleList()
         for i in range(num_layers - 1):
             if self.use_skip_connections and i == (num_layers // 2) - 1:
-                self.hidden_layers.append(nn.Linear(hidden_dim + latent_dim + 2, hidden_dim))
+                self.hidden_layers.append(
+                    nn.Linear(hidden_dim + latent_dim + 2, hidden_dim)
+                )
             else:
                 self.hidden_layers.append(nn.Linear(hidden_dim, hidden_dim))
             self.bn_layers.append(nn.BatchNorm1d(hidden_dim))
@@ -44,12 +49,23 @@ class DeepSDFDecoder(nn.Module):
 
 
 class DeepSDFModel(nn.Module):
-    def __init__(self, latent_dim=256, hidden_dim=512, num_layers=8, num_embeddings=100, use_skip_connections=True):
+    def __init__(
+        self,
+        latent_dim=256,
+        hidden_dim=512,
+        num_layers=8,
+        num_embeddings=100,
+        use_skip_connections=True,
+    ):
         super(DeepSDFModel, self).__init__()
         self.latent_dim = latent_dim
-        self.decoder = DeepSDFDecoder(latent_dim, hidden_dim, num_layers, use_skip_connections)
+        self.decoder = DeepSDFDecoder(
+            latent_dim, hidden_dim, num_layers, use_skip_connections
+        )
 
-        self.latent_codes = nn.Embedding(num_embeddings=num_embeddings, embedding_dim=latent_dim)
+        self.latent_codes = nn.Embedding(
+            num_embeddings=num_embeddings, embedding_dim=latent_dim
+        )
         nn.init.normal_(self.latent_codes.weight, mean=0.0, std=0.01)
 
     def forward(self, shape_indices, points):

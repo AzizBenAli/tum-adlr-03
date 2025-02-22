@@ -3,10 +3,10 @@ single_class:
   output_base_dir: "single_class/data/data"
   data_folder: "single_class/data"
   trained_models_dir: "single_class/trained_models"
-  plots_dir: "single_class/plots"
+  plots_dir: "single_class/visualization"
 
   grid_size: 500
-  grid_range: [ -448, 448 ]
+  grid_range: [-448, 448]
   num_iterations: 100
   lr_visualization: 0.1
 
@@ -20,10 +20,10 @@ multi_class:
   output_base_dir: "multi_class/data/data"
   data_folder: "multi_class/data"
   trained_models_dir: "multi_class/trained_models"
-  plots_dir: "multi_class/plots"
+  plots_dir: "multi_class/visualization"
 
   grid_size: 500
-  grid_range: [ -448, 448 ]
+  grid_range: [-448, 448]
   num_iterations: 100
   lr_visualization: 0.1
 
