@@ -106,7 +106,6 @@ def visualize_shape_with_latent_shape_completion(
 
         axes[0].imshow(
             image,
-            extent=(grid_range[0], grid_range[1], grid_range[0], grid_range[1]),
             origin="lower",
             cmap="gray",
         )
@@ -264,9 +263,7 @@ def infer_and_visualize_shape(
         optimizer.step()
 
         if (iteration + 1) % 50 == 0:
-            print(
-                f"Iteration {iteration + 1}/{num_iterations}, Loss: {loss.item():.6f}"
-            )
+            print(f"Iteration {iteration}/{num_iterations}, Loss: {loss.item():.6f}")
 
     visualize_shape_with_latent_shape_completion(
         model,
