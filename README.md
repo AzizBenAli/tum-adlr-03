@@ -51,14 +51,42 @@ python main.py --mode single_class # Single-class training
 ```
 
 🖼️ Visual Results
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videos Side by Side</title>
+  <style>
+    .video-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .video-container video {
+      max-width: 45%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
 
-<div style="display: flex; align-items: center;">
-  <img src="[https://github.com/user-attachments/assets/a42e0828-a6d7-4afb-a5dd-44fcd0b64022](https://github.com/user-attachments/assets/a42e0828-a6d7-4afb-a5dd-44fcd0b64022)" alt="Image 1" style="max-width: 50%; height: auto; margin-right: 10px;">
-  <video controls style="max-width: 50%; height: auto;">
-    <source src="[https://github.com/user-attachments/assets/4b5c20b3-e607-49a9-8812-ead2f0425139](https://github.com/user-attachments/assets/4b5c20b3-e607-49a9-8812-ead2f0425139)" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+  <div class="video-container">
+    <video controls>
+      <source src="https://github.com/user-attachments/assets/a42e0828-a6d7-4afb-a5dd-44fcd0b64022" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    
+    <video controls>
+      <source src="https://github.com/user-attachments/assets/4b5c20b3-e607-49a9-8812-ead2f0425139" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+</body>
+</html>
+
 
 
 
