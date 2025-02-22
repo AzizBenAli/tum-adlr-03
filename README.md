@@ -8,7 +8,7 @@ This project focuses on deep learning techniques for **robotics applications**, 
 - **3D object representation**  
 The implementation extends the **DeepSDF framework** and explores improvements in **multi-class training**.
 
-📂 Repository Structure
+## 📂 Repository Structure  
 📂 project_root  
  ┣ 📂 configs/              # Configuration files  
  ┃ ┣ 📜 hyperparameters.yaml  
