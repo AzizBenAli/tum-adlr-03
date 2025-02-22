@@ -49,6 +49,6 @@ python main.py --mode multi_class  # Multi-class training
 python main.py --mode single_class # Single-class training
 ```
 
-🖼️ Example Results
+🖼️ Visual Results
 
 
