@@ -51,41 +51,9 @@ python main.py --mode single_class # Single-class training
 ```
 
 🖼️ Visual Results
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Videos Side by Side</title>
-  <style>
-    .video-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
-    .video-container video {
-      max-width: 45%;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
 
-  <div class="video-container">
-    <video controls>
-      <source src="https://github.com/user-attachments/assets/a42e0828-a6d7-4afb-a5dd-44fcd0b64022" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    
-    <video controls>
-      <source src="https://github.com/user-attachments/assets/4b5c20b3-e607-49a9-8812-ead2f0425139" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
 
-</body>
-</html>
+https://github.com/user-attachments/assets/8b8334a7-9aab-4977-8922-d7394048c782
 
 
 
