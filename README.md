@@ -10,23 +10,23 @@ This project focuses on deep learning techniques for **robotics applications**, 
 The implementation extends the **DeepSDF framework** and explores improvements in **multi-class training**.
 
 ## 📂 Repository Structure  
-📂 project_root  
- ┣ 📂 configs/              
- ┃ ┣ 📜 hyperparameters.yaml  
- ┃ ┣ 📜 settings.yaml  
- ┣ 📂 multi_class/            
- ┃ ┣ 📂 data/               
- ┃ ┣ 📂 trained_models/     
- ┃ ┣ 📂 visualization/      
- ┣ 📂 scripts/             
- ┃ ┣ 📂 data_manipulation/  
- ┃ ┣ 📂 evaluation/         
- ┃ ┣ 📂 helpers/            
- ┃ ┣ 📂 models/             
- ┃ ┣ 📂 training/            
- ┃ ┣ 📂 utils/               
- ┣ 📜 README.md            
- ┣ 📜 requirements.txt     
+project_root  
+ ┣ configs/              
+ ┃ ┣ hyperparameters.yaml  
+ ┃ ┣ settings.yaml  
+ ┣ multi_class/            
+ ┃ ┣ data/               
+ ┃ ┣ trained_models/     
+ ┃ ┣ visualization/      
+ ┣ scripts/             
+ ┃ ┣ data_manipulation/  
+ ┃ ┣ evaluation/         
+ ┃ ┣ helpers/            
+ ┃ ┣ models/             
+ ┃ ┣ training/            
+ ┃ ┣ utils/               
+ ┣ README.md            
+ ┣ requirements.txt     
 
 ## 🚀 Setup Instructions  
 
