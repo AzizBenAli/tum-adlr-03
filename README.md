@@ -10,22 +10,22 @@ The implementation extends the **DeepSDF framework** and explores improvements i
 
 ## 📂 Repository Structure  
 📂 project_root  
- ┣ 📂 configs/              # Configuration files  
+ ┣ 📂 configs/              
  ┃ ┣ 📜 hyperparameters.yaml  
  ┃ ┣ 📜 settings.yaml  
- ┣ 📂 multi_class/          # Multi-class training directory  
- ┃ ┣ 📂 data/               # Dataset storage  
- ┃ ┣ 📂 trained_models/     # Saved model checkpoints  
- ┃ ┣ 📂 visualization/      # Output visualizations  
- ┣ 📂 scripts/              # Code scripts  
- ┃ ┣ 📂 data_manipulation/  # Data preprocessing scripts  
- ┃ ┣ 📂 evaluation/         # Model evaluation scripts  
- ┃ ┣ 📂 helpers/            # Utility functions  
- ┃ ┣ 📂 models/             # Model definitions  
- ┃ ┣ 📂 training/           # Training scripts  
- ┃ ┣ 📂 utils/              # Additional utilities  
- ┣ 📜 README.md             # Documentation  
- ┣ 📜 requirements.txt      # Dependencies  
+ ┣ 📂 multi_class/            
+ ┃ ┣ 📂 data/               
+ ┃ ┣ 📂 trained_models/     
+ ┃ ┣ 📂 visualization/      
+ ┣ 📂 scripts/             
+ ┃ ┣ 📂 data_manipulation/  
+ ┃ ┣ 📂 evaluation/         
+ ┃ ┣ 📂 helpers/            
+ ┃ ┣ 📂 models/             
+ ┃ ┣ 📂 training/            
+ ┃ ┣ 📂 utils/               
+ ┣ 📜 README.md            
+ ┣ 📜 requirements.txt     
 
 ## 🚀 Setup Instructions  
 
