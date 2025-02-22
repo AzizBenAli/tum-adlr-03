@@ -51,4 +51,15 @@ python main.py --mode single_class # Single-class training
 
 🖼️ Visual Results
 
+## <a name="cite"></a>:clipboard: Citation
+
+```
+@article{park2019deepsdf,
+  author      = {J. J. Park and P. Florence and J. Straub and R. Newcombe and S. Lovegrove},
+  title       = {DeepSDF: Learning Continuous Signed Distance Functions for Shape Representation},
+  journal     = {arXiv preprint arXiv:1901.05103},
+  year        = {2019}
+}
+```
+
 
